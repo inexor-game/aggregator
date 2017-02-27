@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# ignore PyCharm output
+.idea
+
+# ignore database output
+*.db

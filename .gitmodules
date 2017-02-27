@@ -1,0 +1,3 @@
+[submodule "blog-data"]
+	path = blog-data
+	url = https://github.com/inexor-game/blog-data.git
