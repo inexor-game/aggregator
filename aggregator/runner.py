@@ -23,15 +23,15 @@ def update_feed_sources():
         except IntegrityError:
             pass
 
-    for source in Source.select().where(Source.url << [feeds.values()]):
+    for source in Source.select().where(Source.url.not_in([feeds.values()])):
         source.delete() # Delete old sources
 
 # Step by step
 # - create a database if it doesn't exist
 # - update the feed sources from the JSON files
-# - for every feed find the latest feed, and add new feeds if available
+# - for every feed find the latest entries, and add new entries if available
 
-def main():
+def fetch_entries():
     if not os.path.isfile(DATABASE_FILE):
         db.create_tables([Source, Item])
     else:
@@ -42,7 +42,7 @@ def main():
         feed = feedparser.parse(source.url)
         for entry in feed.entries:
             try:
-                Item.create(source_id=source, url=entry.link, created=entry.published, last_updated=datetime.now(), content=escape(entry.summary_detail.value))
+                Item.create(source=source, url=entry.link, created=entry.published, last_updated=datetime.now(), content=escape(entry.summary_detail.value))
             except IntegrityError:
                 # This is beeing thrown due the unique constraint
                 item = Item.get(url=entry.link)
@@ -53,4 +53,4 @@ def main():
 
 # Run the main script
 if __name__ == "__main__":
-    main()
+    fetch_entries()

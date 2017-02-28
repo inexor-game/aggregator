@@ -14,7 +14,7 @@ class Source(Model):
         database = db
 
 class Item(Model):
-    source_id = ForeignKeyField(Source)
+    source = ForeignKeyField(Source)
     url = TextField(unique=True)
     created = DateTimeField()
     last_updated = DateTimeField()
