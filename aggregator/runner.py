@@ -1,13 +1,12 @@
 import json
-import os.path
+import os
 from datetime import datetime
 from html import escape
 import feedparser
 from peewee import IntegrityError
 from Feeds import DATABASE_FILE, Source, Item, db
 
-_PARDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
-FEEDS_FILE = os.path.join(_PARDIR + '/blog-data/config/feeds.json')
+FEEDS_FILE = os.path.abspath(os.path.join(os.getcwd(), 'blog-data/config/feeds.json'))
 
 def update_feed_sources():
     """
