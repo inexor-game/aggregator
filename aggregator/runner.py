@@ -51,6 +51,6 @@ def fetch_entries():
 
     db.close()
 
-# Run the main script
+# This is for development usage only and should not be used otherwise
 if __name__ == "__main__":
     fetch_entries()

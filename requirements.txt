@@ -1,3 +1,4 @@
 Flask>=0.12
 feedparser>=5.2.1
 peewee>=2.8.8
+uwsgi>=2.0.14

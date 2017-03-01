@@ -62,4 +62,3 @@ def feed_latest(id, limit=10):
     except IntegrityError:
         abort(404) # No feed found
 
-
