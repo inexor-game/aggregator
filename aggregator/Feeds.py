@@ -9,14 +9,14 @@ db = MySQLDatabase(host=config['database']['host'], user=config['database']['use
 
 class Source(Model):
     name = CharField(max_length=120)
-    url = TextField(unique=True)
+    url = TextField(unique=True, max_length=250)
 
     class Meta:
         database = db
 
 class Item(Model):
     source = ForeignKeyField(Source)
-    url = TextField(unique=True)
+    url = TextField(unique=True, max_length=250)
     created = DateTimeField()
     last_updated = DateTimeField()
     content = TextField()
