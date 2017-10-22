@@ -44,7 +44,7 @@ cd aggregator
 source ./venv/bin/activate
 python3 
 
-from aggregator.aggregator.app import *
+from aggregator.Feeds import *
 create_tables() # this might end up in a tiny little script but not now
 ```
 

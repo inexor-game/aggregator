@@ -30,3 +30,6 @@ def before_request_handler():
 
 def after_request_handler():
     db.close()
+
+def create_tables():
+    db.create_tables([Source, Item])

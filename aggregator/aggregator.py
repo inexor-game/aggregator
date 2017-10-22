@@ -61,8 +61,3 @@ def feed_latest(id, limit=10):
         return json.dumps(latest_feeds, default=json_serial)
     except IntegrityError:
         abort(404) # No feed found
-
-
-def create_tables():
-    db.connect()
-    db.create_tables()
