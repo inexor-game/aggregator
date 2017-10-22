@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 from flask import Flask, abort
-from .Feeds import Source, Item
+from .Feeds import Source, Item, db
 from peewee import IntegrityError
 from playhouse.shortcuts import model_to_dict
 
@@ -62,3 +62,7 @@ def feed_latest(id, limit=10):
     except IntegrityError:
         abort(404) # No feed found
 
+
+def create_tables():
+    db.connect()
+    db.create_tables()

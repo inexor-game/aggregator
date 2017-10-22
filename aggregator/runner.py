@@ -4,7 +4,7 @@ from datetime import datetime
 from html import escape
 import feedparser
 from peewee import IntegrityError
-from Feeds import DATABASE_FILE, Source, Item, db
+from Feeds import Source, Item, db
 
 FEEDS_FILE = os.path.abspath(os.path.join(os.getcwd(), 'blog-data/config/feeds.json'))
 
@@ -31,10 +31,7 @@ def update_feed_sources():
 # - for every feed find the latest entries, and add new entries if available
 
 def fetch_entries():
-    if not os.path.isfile(DATABASE_FILE):
-        db.create_tables([Source, Item])
-    else:
-        db.connect()
+    db.connect()
 
     update_feed_sources()
     for source in Source.select():

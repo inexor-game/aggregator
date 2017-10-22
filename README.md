@@ -32,7 +32,21 @@ And whups, `aggregator` served by `uWSGI` at your place!
 # Deploying
 
 ## Database choice
-Currently SQlite3 is used, since the database footprint is small. In future, our [ORM](http://docs.peewee-orm.com/en/latest/) supports changing to PostgreSQL.
+Currently SQlite3 is used, since the database footprint is small. In future, our [ORM](http://docs.peewee-orm.com/en/latest/) supports changing to more databases.
+
+> Update: We are using MySQL as of now
+
+## Initializing the database
+
+```
+# assuming that you have a venv order installed
+cd aggregator
+source ./venv/bin/activate
+python3 
+
+from aggregator.aggregator.app import *
+create_tables() # this might end up in a tiny little script but not now
+```
 
 ## Embed in your webserver
 To embed it into your web server you can use `uwsgi` coming preconfigured with `uwsgi -ini aggregator.ini`
