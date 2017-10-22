@@ -5,7 +5,7 @@ from peewee import *
 config = configparser.ConfigParser()
 config.read(os.path.join(os.getcwd(), 'aggregator.ini'))
 
-db = MySQLDatabase(host=config['database']['host'], user=config['database']['user'], passwd=config['database']['password'], db=config['database']['db'])
+db = MySQLDatabase(host=config['database']['host'], user=config['database']['user'], passwd=config['database']['password'], database=config['database']['db'])
 
 class Source(Model):
     name = CharField(max_length=120)
