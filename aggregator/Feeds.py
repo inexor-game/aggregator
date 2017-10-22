@@ -1,9 +1,11 @@
 import os.path
+import configparser
 from peewee import *
 
-DATABASE_FILE = os.path.abspath(os.path.join(os.getcwd(), 'aggregator.db'))
+config = configparser.ConfigParser()
+config.read(os.path.join(os.getcwd(), 'aggregator.ini'))
 
-db = SqliteDatabase(DATABASE_FILE)
+db = MySQLDatabase(host=config['database']['host'], user=config['database']['user'], passwd=config['database']['password'], db=config['database']['db'])
 
 class Source(Model):
     name = CharField(max_length=120)
